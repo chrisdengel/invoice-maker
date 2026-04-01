@@ -1,27 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Print Screen</title>
-    <link rel="stylesheet" href="index.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Invoice</title>
+<link rel="stylesheet" href="css/invoice.css">
 </head>
 <body>
-    <h1>BUSINESS NAME HERE</h1>
-
-    <button>   
-        <a href="/">Back To Form</a>
-    </button>
-    <script>
-                const resultsList = document.getElementById('results')
-        new URLSearchParams(window.location.search).forEach((value, name) => {
-            resultsList.append(`${name}: ${value}`)
-            resultsList.append(document.createElement('br'))
-        })
-    </script>
+    
+    <div class="invoice-grid">
+    <!-- make 2 places for this -->
+    <h1 id="sender"></h1> 
+    <div id="header-date"></div>
+    <div id="client"></div>
+    <div id="description"></div>
+    <div id="line-items"></div>
+    <div id="totals"></div>
+</div>
 
 
-    <script src="./js/invoice.js"></script>
+<footer>Thank you for your business. It's a pleasure to work with you on your projects. <br />
+    Sincerely yours, <br/>
+    Chris Dengel
+</footer>
 
+<button><a class="no-print" href="index.html">Back To Form</a></button>
+
+<script src="js/invoice.js"></script>
 </body>
 </html>

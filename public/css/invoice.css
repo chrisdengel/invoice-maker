@@ -1,0 +1,44 @@
+#sender {
+    color: blue;
+    border-bottom: 2px, blue;
+    background-color: lightgray;
+}
+
+.invoice-grid {
+    display: grid;
+    grid-template-areas: 'sender sender sender'
+
+
+/* sender
+header-date
+client
+description
+line-items
+totals; */
+}
+
+
+/* ---------------------Responsive Grid----------------------- */
+
+
+/* Tablets */
+@media (min-width: 600px) {
+    .container2 {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* Large Screens */
+
+@media (min-width: 900px) {
+    .container2 {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    /* FIX this hide "Back To Form" button */
+@media print{
+    .no-print {
+        display: none !important;
+      }
+    }      
+} 

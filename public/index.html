@@ -1,49 +1,56 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Invoice</title>
-    <link rel="stylesheet" href="index.css">
-
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Create Invoice</title>
+<link rel="stylesheet" href="css/invoice.css">
 </head>
 <body>
-    <main class="container">
+<main class="container">
+    <h1 class="header">Instant Invoice Creator</h1>
+    <h3>Create professional invoices in seconds!</h3>
 
-        <h1 class="header">Laketown Industrial, LLC ${businessName}</h1>
-        <section class="container2">
+    <form id="invoice-form">
+<!-- --------------Sender Info -->
+        <input name="sender" placeholder="Your Name" />
+        <!-- <input type="senderEmail" placeholder="Your Email" /> -->
+        <!-- <input name="senderAddress" placeholder="Your Address" /> -->
 
-            
-            <!-- <form id="add-post-form"> -->
-            <form id="add-invoice-form">
-                    <label for="description">button:</label><br />
-                <input type="text" id="description" name="description" /><br />
-                <!-- <button type="submit"> Add Post</button> -->
-                <button type="submit"> Add description to invoice page</button>
-            </form>
-            
-            <!-- <button id="get-posts-btn">Description</button> -->
-            <button id="get-invoices-btn">Description</button>
-            <div id="output"></div>
-            
-            <button id="description">Time In</button>
-                <button id="time-out">Time Out</button>
+<!-- --------------Client Info -->
+
+        <input name="client" placeholder="Client Name"  />  <br/>
+        <!-- <input name="clientEmail" placeholder="Client Email"  />  <br/> -->
+        <!-- <input name="clientAddress" placeholder="Client Address"  />  <br/> -->
+        
+<!-- --------------The Money Part  -->
+
+        <input type="number" name="rate" placeholder="Hourly Rate"  />
+        <input type="number" name="flatRate" placeholder="Flat Rate"  />
+        <input type="hidden" name="taxExempt" value="false" />
+        <input type="checkbox" name="taxExempt" value="true" />
+<!-- <input type="number" name="nonBillable" /> -->
+<!-- <input type="number" name="flatRate" placeholder="enter a dollar ammount" /> -->
+
+<!-- --------------The Work Part  -->
+
+        <input name="description" placeholder="Description, comma separated"  />  <br/>
+
+<!-- --------------The Time Part  -->
+
+<button id="description">Time In</button>  OR  <input type="datetime-local" name="timeIn"  />  <br/>
+<button id="time-out">Time Out</button>  OR  <input type="datetime-local" name="timeOut"  /> <br/>
 
 
-                <button>   
-                    <a href="invoice.html">CREATE INVOICE</a>
-               </button>
-        </section>
 
+ <!-- --------------The Submit Part  -->
+       
+        <button type="submit">Create Invoice</button>
+        <button type="submit">Find Invoice by Date (make function to find between cetrain dates)</button>
+    </form>
 
+</main>
 
-
-<footer>Thank you for your business. It's a pleasure to work with you on your projects. <br />
-        Sincerely yours, <br/>
-        Chris Dengel
-</footer>
-
-        <script src="./js/main.js"></script>
-        </main>
+<script src="js/main.js"></script>
 </body>
 </html>

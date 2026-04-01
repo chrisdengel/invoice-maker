@@ -22,9 +22,9 @@
  */
 
 
-
-
-
+/* ------------------------------------ */
+/* DO I WANT A BACKGROUND IMAGE?? */
+/* ------------------------------------ */
 
 
 
@@ -46,4 +46,11 @@
     .container2 {
         grid-template-columns: repeat(3, 1fr);
     }
+
+    /* FIX this hide "Back To Form" button */
+@media print{
+    .no-print {
+        display: none !important;
+      }
+    }      
 } 

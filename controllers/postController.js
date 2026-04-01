@@ -1,96 +1,53 @@
-let invoices = [
-    {id: 1, 
-        description: '',
-        // timeIn: ,
-        // timeOut: 8,
-    }
-   
-];
+let invoices = [];
 
-// @desc Get all invoices
-// @route GET /api/invoices
-
-export const getInvoices = (req, res, next) => {
-    const limit = parseInt(req.query.limit);
-
-    if (!isNaN(limit) && limit > 0) {
-       return res.status(200).json(invoices.slice(0, limit));
-    }
-
-       return res.status(200).json(invoices);
-};
-
-//@desc Get single invoice
-// @route GET /api/invoices/:id 
-
-export const getInvoice = (req, res, next) => {
-    const id = parseInt(req.params.id);
-    const invoice = invoices.find((invoice) => invoice.id === id);
-
-    if (!invoice) {
-        const error = new Error(`An invoice with the id of ${id} was not found`);
-        error.status = 404;
-        return next(error);
-    } 
-
-        res.status(200).json(invoice);
+// Round to nearest 5 minutes
+function roundTo5(date) {
+    const ms = 1000 * 60 * 5;
+    return new Date(Math.round(date.getTime() / ms) * ms);
 }
 
-//@desc  Create new invoice
-// @route invoice /api/invoices 
+// Create new invoice
+export const createInvoice = (req, res) => {
+    const { sender, client, description, timeIn, timeOut, rate } = req.body;
 
-export const createInvoice = (req, res, next) => {
+    // if (!sender || !client || !description || !timeIn || !timeOut || !rate) {
+    //     return res.status(400).json({ error: 'All fields are required' });
+    // }
+
+    const start = roundTo5(new Date(timeIn));
+    const end = roundTo5(new Date(timeOut));
+    // const lunch = minusBreak(`${lunchBreak}`)
+    const hours = (end - start) / 3600000;
+
+    const descriptions = description
+        .split(',')
+        .map(d => d.trim())
+        .filter(Boolean);
+
     const newInvoice = {
         id: invoices.length + 1,
-        description: req.body.description,
+        sender,
+        client,
+        date: new Date().toLocaleDateString(),
+        timeIn: start,
+        timeOut: end,
+        hours,
+        rate: Number(rate),
+        descriptions
     };
 
-if (!newInvoice.description) {
-    const error = new Error(`Please include a description`);
-    error.status = 400;
-    return next(error);
-}
-
     invoices.push(newInvoice);
+
     res.status(201).json(newInvoice);
-}
+};
 
+// Get all invoices
+export const getInvoices = (req, res) => res.json(invoices);
 
-// @desc Update invoice
-//@route PUT /api/invoice/:id
-export const updateInvoice = (req, res, next) => {
+// Get invoice by ID
+export const getInvoice = (req, res) => {
     const id = parseInt(req.params.id);
-    const invoice = invoices.find((invoice) => invoice.id === id);
-
-    if (!invoice) {
-            const error = new Error(`An invoice with the id of ${id} was not found`);
-            error.status = 404;
-            return next(error);
-        } 
-        if (!req.body.description) {
-            const error = new Error('Please include a description');
-            error.status = 400;
-            return next(error);
-        }
-        
-        invoice.description = req.body.description;
-    invoice.description = req.body.description;
-    res.status(200).json(invoices);
-}
-
-// @desc  Delete invoice
-//@route DELETE /api/invoice/:id
-export const deleteInvoice = (req, res, next) => {
-    const id = parseInt(req.params.id);
-    const invoice = invoices.find((invoice) => invoice.id === id);
-    
-    if (!invoice) {
-        const error = new Error(`An invoice with the id of ${id} was not found`);
-        error.status = 404;
-        return next(error);
-    } 
-    
-    invoices = invoices.filter((invoice) => invoice.id !== id);
-     res.status(200).json(invoices);
-
-}
+    const invoice = invoices.find(inv => inv.id === id);
+    if (!invoice) return res.status(404).json({ error: 'Invoice not found' });
+    res.json(invoice);
+};

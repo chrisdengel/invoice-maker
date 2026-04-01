@@ -1,61 +1,27 @@
-const output = document.querySelector('#output');
-const button = document.querySelector('#get-invoices-btn');
-const form = document.querySelector('#add-invoice-form')
 
-// Get and show posts
-    async function showInvoices() {
+const form = document.getElementById('invoice-form');
 
-    try {
-        const res = await fetch('http://localhost:8000/api/invoices');
-        if (!res.ok) {
-            throw new Error('Failed to fetch invoices');
-        }
-
-        const invoices = await res.json();
-        output.innerHTML = '';
-    
-        invoices.forEach((invoice) => {
-            const invoiceEl = document.createElement('div');
-            invoiceEl.textContent = invoice.description;
-            output.appendChild(invoiceEl);
-        })
-    } catch (error) {
-        console.log('Error fetching invoices: ', error);
-    }
-}
-
-// Submit new post
-    async function addInvoice(e) {
+if (form) {
+    form.addEventListener('submit', async (e) => {
         e.preventDefault();
-    
-    const formData = new FormData(this);
-    const description = formData.get('description');
-    
-    e.target.reset()
 
-    try {
-        const res = await fetch('http://localhost:8000/api/invoices', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({description})
-        });
+        const data = Object.fromEntries(new FormData(e.target));
 
-        if (!res.ok) {
-            throw new Error('Failed to add post');
+        try {
+            const res = await fetch('/api/invoices', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(data)
+            });
+
+            if (!res.ok) throw new Error('Failed to create invoice');
+
+            const newInvoice = await res.json();
+
+            window.location.href = `/invoice.html?id=${newInvoice.id}`;
+
+        } catch (err) {
+            console.error(err);
         }
-
-        const newInvoice = await res.json();
-
-        const invoiceEl = document.createElement('div');
-        invoiceEl.textContent = newInvoice.description;
-        output.appendChild(invoiceEl);
-        showInvoices();
-    } catch (error) {
-        console.error('Error adding invoice');
-    }
+    });
 }
-// Event listener
-button.addEventListener('click', showInvoices);
-form.addEventListener('submit', addInvoice);
