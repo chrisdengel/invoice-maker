@@ -8,7 +8,7 @@ function roundTo5(date) {
 
 // Create new invoice
 export const createInvoice = (req, res) => {
-    const { sender, client, description, timeIn, timeOut, rate } = req.body;
+    const { sender, senderEmail, senderAddress, client, clientEmail, clientAddress, description, timeIn, timeOut, rate } = req.body;
 
     // if (!sender || !client || !description || !timeIn || !timeOut || !rate) {
     //     return res.status(400).json({ error: 'All fields are required' });
@@ -27,7 +27,11 @@ export const createInvoice = (req, res) => {
     const newInvoice = {
         id: invoices.length + 1,
         sender,
+        senderEmail,
+        senderAddress,
         client,
+        clientEmail,
+        clientAddress,
         date: new Date().toLocaleDateString(),
         timeIn: start,
         timeOut: end,

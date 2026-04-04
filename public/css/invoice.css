@@ -1,12 +1,29 @@
+* {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.header {
+    font-weight: 200;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
 #sender {
     color: blue;
     border-bottom: 2px, blue;
-    background-color: lightgray;
+    
 }
+/* #senderEmail {
+    color: red;  
+    border: 2px solid red;
 
+} */
 .invoice-grid {
     display: grid;
-    grid-template-areas: 'sender sender sender'
+    grid-template-areas: 
+    'invoiceNum '
+    'sender sender  client'
+    'senderEmail clientEmail line-items'
+    'senderAddress clientAddress' 
 
 
 /* sender
@@ -16,6 +33,14 @@ description
 line-items
 totals; */
 }
+#sender, footer {
+    /* width: 100%;
+    height: 100px;
+    padding: 10px; */
+    margin: 0px;
+   border-top: solid 4px blue;
+}
+
 
 
 /* ---------------------Responsive Grid----------------------- */

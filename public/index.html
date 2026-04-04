@@ -4,33 +4,35 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Create Invoice</title>
-<link rel="stylesheet" href="css/invoice.css">
+<link rel="stylesheet" href="css/index.css">
 </head>
 <body>
 <main class="container">
     <h1 class="header">Instant Invoice Creator</h1>
     <h3>Create professional invoices in seconds!</h3>
+    <div class="background-img"></div>
 
     <form id="invoice-form">
 <!-- --------------Sender Info -->
+    <div class="aside">
         <input name="sender" placeholder="Your Name" />
-        <!-- <input type="senderEmail" placeholder="Your Email" /> -->
-        <!-- <input name="senderAddress" placeholder="Your Address" /> -->
+        <input name="phoneNumber" placeholder="Your Phone Number" />
+        <input type="email" name="senderEmail" placeholder="Your Email" />
+        <input name="senderAddress" placeholder="Your Address" />
+    </div>
 
 <!-- --------------Client Info -->
 
         <input name="client" placeholder="Client Name"  />  <br/>
-        <!-- <input name="clientEmail" placeholder="Client Email"  />  <br/> -->
-        <!-- <input name="clientAddress" placeholder="Client Address"  />  <br/> -->
+        <input type="email" name="clientEmail" placeholder="Client Email"  />  <br/>
+        <input name="clientAddress" placeholder="Client Address"  />  <br/>
         
 <!-- --------------The Money Part  -->
 
         <input type="number" name="rate" placeholder="Hourly Rate"  />
-        <input type="number" name="flatRate" placeholder="Flat Rate"  />
         <input type="hidden" name="taxExempt" value="false" />
         <input type="checkbox" name="taxExempt" value="true" />
-<!-- <input type="number" name="nonBillable" /> -->
-<!-- <input type="number" name="flatRate" placeholder="enter a dollar ammount" /> -->
+        <!-- <input type="number" name="nonBillable" /> -->
 
 <!-- --------------The Work Part  -->
 
@@ -46,7 +48,7 @@
  <!-- --------------The Submit Part  -->
        
         <button type="submit">Create Invoice</button>
-        <button type="submit">Find Invoice by Date (make function to find between cetrain dates)</button>
+        <button type="submit" name="findInv">Find Invoice by Date (make function to find between cetrain dates)</button>
     </form>
 
 </main>

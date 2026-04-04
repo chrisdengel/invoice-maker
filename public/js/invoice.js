@@ -1,9 +1,9 @@
 const senderEl = document.getElementById('sender');
-//const senderEmailEl = document.getElementById('senderEmail');
-//const senderAddressEl = document.getElementById('senderAddress');
+const senderEmailEl = document.getElementById('senderEmail');
+const senderAddressEl = document.getElementById('senderAddress');
 const clientEl = document.getElementById('client');
-// const clientEmailEl = document.getElementById('clientEmail');
-// const clientAddressEl = document.getElementById('clientAddress');
+const clientEmailEl = document.getElementById('clientEmail');
+const clientAddressEl = document.getElementById('clientAddress');
 const dateEl = document.getElementById('header-date');
 const descEl = document.getElementById('description');
 const totalsEl = document.getElementById('totals');
@@ -18,7 +18,11 @@ if (clientEl && dateEl && descEl && totalsEl) {
             .then(res => res.json())
             .then(invoice => {
                 clientEl.textContent = `${invoice.client}`;
+                clientEmailEl.textContent = `${invoice.clientEmail}`;
+                clientAddressEl.textContent = `${invoice.clientAddress}`;
                 senderEl.textContent = `${invoice.sender}`;
+                senderEmailEl.textContent = `${invoice.senderEmail}`;
+                senderAddressEl.textContent = `${invoice.senderAddress}`;
                 dateEl.textContent = `Date: ${invoice.date}`;
                 descEl.textContent = invoice.descriptions.join(', ');
 
