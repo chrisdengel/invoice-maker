@@ -7,33 +7,31 @@ const clientAddressEl = document.getElementById('clientAddress');
 const dateEl = document.getElementById('header-date');
 const descEl = document.getElementById('description');
 const totalsEl = document.getElementById('totals');
-// const nonBillEl = document.getElementById('nonBillable');
-// const flatRateEl = document.getElementById('flatRate');
 
-if (clientEl && dateEl && descEl && totalsEl) {
-    const id = new URLSearchParams(window.location.search).get('id');
+const id = new URLSearchParams(window.location.search).get('id');
 
-    if (id) {
-        fetch(`/api/invoices/${id}`)
-            .then(res => res.json())
-            .then(invoice => {
-                clientEl.textContent = `${invoice.client}`;
-                clientEmailEl.textContent = `${invoice.clientEmail}`;
-                clientAddressEl.textContent = `${invoice.clientAddress}`;
-                senderEl.textContent = `${invoice.sender}`;
-                senderEmailEl.textContent = `${invoice.senderEmail}`;
-                senderAddressEl.textContent = `${invoice.senderAddress}`;
-                dateEl.textContent = `Date: ${invoice.date}`;
-                descEl.textContent = invoice.descriptions.join(', ');
+const invoices = JSON.parse(localStorage.getItem("invoices")) || [];
 
-                const labor = (invoice.hours || 0) * (invoice.rate || 0);
+const invoice = invoices.find(inv => inv.id == id);
 
-                totalsEl.innerHTML = `
-                    <p>Hours: ${invoice.hours || 0}</p>
-                    <p>Rate: $${invoice.rate || 0}</p>
-                    <h2>Total: $${labor.toFixed(2)}</h2>
-                `;
-            })
-            .catch(err => console.error('Error loading invoice:', err));
-    }
+if (invoice) {
+    clientEl.textContent = invoice.client;
+    clientEmailEl.textContent = invoice.clientEmail;
+    clientAddressEl.textContent = invoice.clientAddress;
+    senderEl.textContent = invoice.sender;
+    senderEmailEl.textContent = invoice.senderEmail;
+    senderAddressEl.textContent = invoice.senderAddress;
+    dateEl.textContent = `Date: ${invoice.date}`;
+
+    descEl.textContent = invoice.descriptions.join(', ');
+
+    const labor = invoice.hours * invoice.rate;
+
+    totalsEl.innerHTML = `
+        <p>Hours: ${invoice.hours}</p>
+        <p>Rate: $${invoice.rate}</p>
+        <h2>Total: $${labor.toFixed(2)}</h2>
+    `;
+} else {
+    console.error("Invoice not found");
 }
