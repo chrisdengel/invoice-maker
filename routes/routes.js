@@ -1,20 +1,20 @@
-// import express from 'express';
-// import {
-//   getInvoices,
-//   getInvoice,
-//   createInvoice,
-//   updateInvoice,
-//   deleteInvoice
-// } from '../controllers/postController.js';
+import express from 'express';
+import {
+  getInvoices,
+  getInvoice,
+  createInvoice,
+  updateInvoice,
+  deleteInvoice
+} from '../controllers/postController.js';
 
-// const router = express.Router();
+const router = express.Router();
 
-// router.get('/', getInvoices);
-// router.get('/:id', getInvoice);
-// router.post('/', createInvoice);
-// router.put('/:id', updateInvoice);
-// router.delete('/:id', deleteInvoice);
+router.get('/', getInvoices);
+router.get('/:id', getInvoice);
+router.post('/', createInvoice);
+router.put('/:id', updateInvoice);
+router.delete('/:id', deleteInvoice);
 
-// export default router;
+export default router;
 
 

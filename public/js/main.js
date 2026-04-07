@@ -1,31 +1,40 @@
+
 const form = document.getElementById('invoice-form');
 
-let invoices = JSON.parse(localStorage.getItem("invoices")) || [];
-
-function saveInvoices() {
-    localStorage.setItem("invoices", JSON.stringify(invoices));
-}
-
 if (form) {
-    form.addEventListener('submit', (e) => {
+    form.addEventListener('submit', async (e) => {
         e.preventDefault();
 
         const data = Object.fromEntries(new FormData(e.target));
 
-        const newInvoice = {
-            id: Date.now(),
-            ...data,
-            descriptions: (data.description || "")
-                .split(',')
-                .map(d => d.trim())
-                .filter(Boolean),
-            hours: Number(data.hours || 0),
-            rate: Number(data.rate || 0)
-        };
+        try {
+            const res = await fetch('/api/invoices', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(data)
+            });
 
-        invoices.push(newInvoice);
-        saveInvoices();
+            if (!res.ok) throw new Error('Failed to create invoice');
 
-        window.location.href = `/invoice.html?id=${newInvoice.id}`;
+            const newInvoice = await res.json();
+
+            window.location.href = `/invoice.html?id=${newInvoice.id}`;
+
+        } catch (err) {
+            console.error(err);
+        }
+//validate user input
+
+        if (!data.client || !data.rate || !data.timeIn || !data.timeOut) {
+            alert("Please fill out required fields");
+            return;
+        }
+        
+        if (new Date(data.timeOut) <= new Date(data.timeIn)) {
+            alert("Make sure this is correct!! Time Out is usually after Time In");
+            return;
+        }
+
     });
+    
 }
