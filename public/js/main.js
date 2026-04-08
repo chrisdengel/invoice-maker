@@ -7,6 +7,18 @@ if (form) {
 
         const data = Object.fromEntries(new FormData(e.target));
 
+        // validate user input
+
+        if (!data.client || !data.rate || !data.timeIn || !data.timeOut) {
+            alert("Please fill out required fields");
+            return;
+        }
+        
+        if (new Date(data.timeOut) <= new Date(data.timeIn)) {
+            alert("Something doesn't look right. Time Out is usually after Time In. Press the back button to edit.");
+            return;
+        }
+
         try {
             const res = await fetch('/api/invoices', {
                 method: 'POST',
@@ -23,17 +35,7 @@ if (form) {
         } catch (err) {
             console.error(err);
         }
-//validate user input
 
-        if (!data.client || !data.rate || !data.timeIn || !data.timeOut) {
-            alert("Please fill out required fields");
-            return;
-        }
-        
-        if (new Date(data.timeOut) <= new Date(data.timeIn)) {
-            alert("Make sure this is correct!! Time Out is usually after Time In");
-            return;
-        }
 
     });
     

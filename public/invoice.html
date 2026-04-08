@@ -7,32 +7,54 @@
 <link rel="stylesheet" href="css/invoice.css">
 </head>
 <body>
-    <h1 class="invoiceNum">INVOICE</h1>
-    <h1 id="sender"></h1> 
-    <div id="senderEmail"></div> 
-    <div id="senderAddress"></div> 
+    <div class="container">
 
-    <div class="invoice-grid">
-    <!-- make 2 places for this -->
-     <!-- sender -->
-    <!-- Client -->
-    <div id="client"></div>
-    <div id="clientEmail"></div>
-    <div id="clientAddress"></div>
-    <!-- Date -->
-    <div id="header-date"></div>
-    <!-- description -->
-    <div id="description"></div>
-    <div id="line-items"></div>
+        <!-- Date -->
+        <h1 class="invoiceNum">INVOICE</h1>
+        <div id="header-date"></div>
 
-    <div id="totals"></div>
-</div>
+        <!-- sender -->
+         <section class="senderInfo">
+             <h1 id="sender"></h1> 
+             <div id="senderEmail"></div> 
+             <div id="senderPhoneNumber"></div> 
+             <div id="senderAddress"></div> 
+             <div id="senderCity"></div> 
+             <div id="senderState"></div> 
+             <div id="senderZip"></div> 
+        </section>
 
+            <!-- Client -->
+            <div id="clientData">
+                <strong>Attention:</strong>
+                <div id="client"></div>
+                <div id="clientPhoneNumber"></div>
+                <div id="clientEmail"></div>
+                <section>
+                    <p>Address:</p>
+                    <div id="clientAddress"></div>
+                    <div id="clientCity"></div>
+                    <div id="clientState"></div>
+                    <div id="clientZip"></div>
+                </section>
+            </div>
+            <!-- description -->
+            
+            <div id="totals"></div>
+            <div>
 
-<footer>Thank you for your business. It's a pleasure to work with you on your projects. <br />
-    Sincerely yours, <br/>
-    Chris Dengel
-</footer>
+                <p>Description of Services:</p>
+                <div id="description">
+                </div>
+                <div id="line-items"></div>
+            </div>
+        
+        <footer>Thank you for your business. It's a pleasure to work with you on your projects. <br />
+            Sincerely yours, <br/>
+            Chris Dengel
+        </footer>
+    </div>
+
 
 <button><a class="no-print" href="index.html">Back To Form</a></button>
 

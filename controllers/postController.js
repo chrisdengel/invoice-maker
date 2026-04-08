@@ -8,17 +8,16 @@ function roundTo5(date) {
 
 // Create new invoice
 export const createInvoice = (req, res) => {
-    const { sender, senderEmail, senderAddress, client, clientEmail, clientAddress, description, timeIn, timeOut, rate } = req.body;
+    const { sender, senderAddress, senderCity, senderState, senderZip, senderEmail, senderPhoneNumber, client, clientAddress, clientCity, clientState, clientZip, clientEmail, clientPhoneNumber, description, timeIn, timeOut, rate } = req.body;
 
 
-    
+
      if (!sender || !client || !description || !timeIn || !timeOut || !rate) {
          return res.status(400).json({ error: 'All fields are required' });
     }
 
     const start = roundTo5(new Date(timeIn));
     const end = roundTo5(new Date(timeOut));
-    // const lunch = minusBreak(`${lunchBreak}`)
     const hours = (end - start) / 3600000;
 
     const descriptions = description
@@ -30,10 +29,18 @@ export const createInvoice = (req, res) => {
         id: invoices.length + 1,
         sender,
         senderEmail,
+        senderPhoneNumber,
         senderAddress,
+        senderCity,
+        senderState,
+        senderZip,
         client,
         clientEmail,
+        clientPhoneNumber,
         clientAddress,
+        clientCity,
+        clientState,
+        clientZip,
         date: new Date().toLocaleDateString(),
         timeIn: start,
         timeOut: end,

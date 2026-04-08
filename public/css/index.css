@@ -11,14 +11,40 @@
     background-size: cover;
     opacity: .2;
     z-index: -1;
+}
+.input {
+    width: 200px;
+}
 
-.container {
+.servicesInput {
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+}
+    
+.senderContainer,
+.clientContainer,
+.calendar,
+.money,
+.descriptionOfServices {
     max-width: 1100px;
     margin: 20px auto;
     padding: 20px;
-    background: #fff;
+    background: transparent;
     border-radius: 8px;
     box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    
+}
+
+.senderContainer:hover,
+.clientContainer:hover,
+.calendar:hover,
+.descriptionOfServices:hover,
+.money:hover {
+  box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+  transform: translateY(-5px);
+  background: #ffffff0d;
+  transition: all 0.3s ease;
 }
 
 .container2 {
@@ -28,42 +54,37 @@
     margin-top: 20px;
 }
 
-.header {
-    color:blue;
+button {
+    display: inline-block;
+    margin-top: 25px;
+    padding: 12px 35px;
+    background: #007bff;
+    color: white;
+    text-decoration: none;
+    border-radius: 40px;
+    font-size: 16px;
+    transition: background 0.3s ease, transform 0.2s ease;
 }
 
- */
 
-
-/* ------------------------------------ */
-/* DO I WANT A BACKGROUND IMAGE?? */
-/* ------------------------------------ */
-
-
+.header {
+    color:gray;
+    text-align: center;
+}
 
 
 
 /* ---------------------Responsive Grid----------------------- */
 
 
-/* Tablets */
 @media (min-width: 600px) {
     .container2 {
         grid-template-columns: repeat(2, 1fr);
     }
-
-
-/* Large Screens */
+}
 
 @media (min-width: 900px) {
     .container2 {
         grid-template-columns: repeat(3, 1fr);
     }
-
-    /* FIX this hide "Back To Form" button */
-@media print{
-    .no-print {
-        display: none !important;
-      }
-    }      
-} 
+}
