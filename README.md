@@ -33,10 +33,6 @@ Create invoices using a form
 
 npm install
 
-npm init -y
-
-npm install express
-
 2. Start server:
 npm run dev
 
