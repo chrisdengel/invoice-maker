@@ -20,6 +20,7 @@ Create invoices using a form
 - JavaScript
 - Node.js
 - Express.js
+- AI Usage: ChatGPT was used minimally to resolve syntax errors and compare best practices.
 
  # API Endpoints
 
