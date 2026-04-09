@@ -28,17 +28,43 @@ Create invoices using a form
 - `GET /api/invoices/:id` – Retrieve a single invoice
 
  # How to Run
+## Setup Instructions
 
-1. Install dependencies:
+### 1. Clone the repository
 
-npm install
+- `git clone https://github.com/chrisdengel/invoice-maker.git`
 
-2. Start server:
-npm run dev
+- `cd invoice-maker`
 
-3. Open in browser:
+## 2. Install dependencies:
 
-http://localhost:8000
+`npm install`
+
+## 3. Set up environment variables
+
+Check for a `.env.example` file:
+
+- `ls -a`
+
+If you see `.env.example`, run:
+
+- `cp .env.example .env`
+
+If not, create `.env` manually:
+
+- `touch .env`
+
+Then add:
+
+`PORT=8000`
+
+## 4. Start server:
+
+`npm run dev`
+
+## 5. Open in browser:
+
+`http://localhost:8000`
 
 
 
