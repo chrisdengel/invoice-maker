@@ -16,6 +16,7 @@
 
 <!-- --------------Sender Info -->
     <div class="senderContainer">
+        <h1>1. Enter your information here. </h1>
         <label for="contactInfo">Your Information</label>
 
         <input class="input" name="sender" placeholder="Name" autocomplete="name"/>
@@ -34,8 +35,9 @@
     <div class="clientContainer">
         
         <!-- --------------Client Info -->
-        <label for="contactInfo">Recipient Information</label>
+        <!-- <label for="contactInfo">Recipient Information</label> -->
 
+        <h1>2. Enter your client's information here.</h1>
         <input class="input" name="client" placeholder="Client Name" autocomplete="name" /> 
         <input class="input" name="clientPhoneNumber" placeholder="Phone Number" type="tel" />
         <input class="input" type="email" name="clientEmail" placeholder="Client Email"  />  <br/>
@@ -48,22 +50,27 @@
     </div>
 <!-- --------------The Money Part  -->
 <div class="money">
+    <h1>3. Enter the dollar per hour ammount.</h1>
 
     <input class="input" type="number" name="rate" placeholder="Hourly Rate"  /> <br/>
     <input class="input" type="hidden" name="taxExempt" value="false" />
+    <h1> 4. Check if client is tax exempt.</h1>
     <label for="taxExempt">Tax Exempt</label> 
     <input type="checkbox" name="taxExempt" value="true" />
 </div>
 
 <!-- --------------The Work Part  -->
 <div class="descriptionOfServices">
-    <label for="services">Description of Services</label> <br/>
+    <h1 for="services">5. Description of Services</h1> <br/>
 
     <textarea class="servicesInput" name="description" placeholder="Description, comma separated" rows="10" cols="50"></textarea>
 </div>
 
 <!-- --------------The Time Part  -->
     <div class="calendar">
+
+        <h1 for="services">5. Select time in and time out.</h1> <br/>
+        <strong>Note: For flat rate, enter dollar per hour ammount. Select date on calendar and adjust by one hour. </strong> <br/>
         <label for="Time In">Time In</label>
         <input class="input" type="datetime-local" name="timeIn"  />  <br/>
         <label for="Time Out">Time Out</label>

@@ -30,6 +30,8 @@ if (form) {
 
             const newInvoice = await res.json();
 
+            localStorage.setItem(`invoice-${newInvoice.id}`, JSON.stringify(newInvoice));
+
             window.location.href = `/invoice.html?id=${newInvoice.id}`;
 
         } catch (err) {
