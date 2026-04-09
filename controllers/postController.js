@@ -1,24 +1,29 @@
 let invoices = [];
 
-// Round to nearest 5 minutes
 function roundTo5(date) {
     const ms = 1000 * 60 * 5;
     return new Date(Math.round(date.getTime() / ms) * ms);
 }
 
-// Create new invoice
 export const createInvoice = (req, res) => {
-    const { sender, senderAddress, senderCity, senderState, senderZip, senderEmail, senderPhoneNumber, client, clientAddress, clientCity, clientState, clientZip, clientEmail, clientPhoneNumber, description, timeIn, timeOut, rate } = req.body;
+    const { sender, senderBusinessName, senderAddress, senderCity, senderState, senderZip, senderEmail, senderPhoneNumber, client, clientBusinessName, clientAddress, clientCity, clientState, clientZip, clientEmail, clientPhoneNumber, description, timeIn, timeOut, rate, taxExempt } = req.body;
 
-
-
-     if (!sender || !client || !description || !timeIn || !timeOut || !rate) {
-         return res.status(400).json({ error: 'All fields are required' });
+     if (!sender || !client || !description || !rate) {
+         return res.status(400).json({ error: 'Names, description and rate are required' });
     }
 
     const start = roundTo5(new Date(timeIn));
     const end = roundTo5(new Date(timeOut));
     const hours = (end - start) / 3600000;
+
+    const labor = hours * Number(rate || 0);
+
+    const TAX_RATE = 0.06;
+    
+    const isTaxExempt = taxExempt === 'true';
+    
+    const tax = isTaxExempt ? 0 : labor * TAX_RATE;
+    const total = labor + tax;
 
     const descriptions = description
         .split(',')
@@ -28,6 +33,7 @@ export const createInvoice = (req, res) => {
     const newInvoice = {
         id: invoices.length + 1,
         sender,
+        senderBusinessName,
         senderEmail,
         senderPhoneNumber,
         senderAddress,
@@ -35,6 +41,7 @@ export const createInvoice = (req, res) => {
         senderState,
         senderZip,
         client,
+        clientBusinessName,
         clientEmail,
         clientPhoneNumber,
         clientAddress,
@@ -46,7 +53,10 @@ export const createInvoice = (req, res) => {
         timeOut: end,
         hours,
         rate: Number(rate),
-        descriptions
+        descriptions,
+        tax,
+        total,
+        taxExempt: isTaxExempt,
     };
 
     invoices.push(newInvoice);
@@ -54,10 +64,8 @@ export const createInvoice = (req, res) => {
     res.status(201).json(newInvoice);
 };
 
-// Get all invoices
 export const getInvoices = (req, res) => res.json(invoices);
 
-// Get invoice by ID
 export const getInvoice = (req, res) => {
     const id = parseInt(req.params.id);
     const invoice = invoices.find(inv => inv.id === id);

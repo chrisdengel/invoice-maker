@@ -3,10 +3,8 @@ import { createInvoice, getInvoices, getInvoice } from '../controllers/postContr
 
 const router = express.Router();
 
-router.post('/', createInvoice);   // POST /api/invoices
-router.get('/', getInvoices);      // GET /api/invoices
-router.get('/:id', getInvoice);    // GET /api/invoices/:id
-
-
+router.post('/', createInvoice);   
+router.get('/', getInvoices);      
+router.get('/:id', getInvoice);   
 
 export default router;

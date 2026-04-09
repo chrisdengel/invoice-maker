@@ -66,16 +66,10 @@ button {
     transition: background 0.3s ease, transform 0.2s ease;
 }
 
-
 .header {
     color:gray;
     text-align: center;
 }
-
-
-
-/* ---------------------Responsive Grid----------------------- */
-
 
 @media (min-width: 600px) {
     .container2 {

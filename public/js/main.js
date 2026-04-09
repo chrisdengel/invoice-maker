@@ -7,10 +7,8 @@ if (form) {
 
         const data = Object.fromEntries(new FormData(e.target));
 
-        // validate user input
-
-        if (!data.client || !data.rate || !data.timeIn || !data.timeOut) {
-            alert("Please fill out required fields");
+        if (!data.client || !data.sender || !data.rate) {
+            alert("Your name, client's name and rate are required fields");
             return;
         }
         
