@@ -132,4 +132,14 @@ button {
     #header-date {
         text-align: left;
     }
+
+    @media (max-width: 600px) {
+        .container {
+            margin: 0;
+            padding: 20px;
+            border-radius: 0;
+            box-shadow: none;
+            max-width: 100%;
+        }
+    }
 }
