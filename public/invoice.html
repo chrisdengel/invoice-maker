@@ -7,13 +7,11 @@
 <link rel="stylesheet" href="css/invoice.css">
 </head>
 <body>
-    <div class="container">
+    <main class="container">
 
-        <!-- Date -->
         <h1 class="invoiceNum">INVOICE</h1>
         <div id="header-date"></div>
 
-        <!-- sender -->
          <section class="senderInfo">
              <h1 id="sender"></h1> 
              <div id="senderEmail"></div> 
@@ -25,8 +23,7 @@
              <div id="senderZip"></div> 
         </section>
 
-            <!-- Client -->
-            <div id="clientData">
+            <section id="clientData">
                 <strong>Attention:</strong>
                 <div id="client"></div>
                 <div id="clientPhoneNumber"></div>
@@ -39,23 +36,22 @@
                     <div id="clientState"></div>
                     <div id="clientZip"></div>
                 </section>
-            </div>
-            <!-- Description -->
+            </section>
             
             <div id="totals"></div>
-            <div>
+            <section>
 
                 <p>Description of Services:</p>
                 <div id="description">
                 </div>
                 <div id="line-items"></div>
-            </div>
+            </section>
         
         <footer>Thank you for your business. It's a pleasure to work with you on your projects. <br />
             Sincerely yours, <br/>
             <p id="sender"></p>
         </footer>
-    </div>
+    </main>
 
 
 <button><a class="no-print" href="index.html">Back To Form</a></button>

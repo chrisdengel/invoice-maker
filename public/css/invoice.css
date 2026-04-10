@@ -36,6 +36,10 @@ body {
     font-size: 18px;
 }
 
+.senderInfo {
+    text-align: right;
+}
+
 #senderEmail {
     color: #007bff;
 }
@@ -134,12 +138,16 @@ button {
     }
 
     @media (max-width: 600px) {
-        .container {
-            margin: 0;
-            padding: 20px;
-            border-radius: 0;
-            box-shadow: none;
-            max-width: 100%;
-        }
+    .container {
+        margin: 0;
+        padding: 20px;
+        border-radius: 0;
+        box-shadow: none;
+        max-width: 100%;
     }
+
+    #totals {
+        width: 100%;
+    }
+}
 }
